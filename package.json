@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "test": "tsx ./node_modules/@cucumber/cucumber/bin/cucumber-js",
-  "test:login": "tsx ./node_modules/@cucumber/cucumber/bin/cucumber-js"
-},
+    "test": "tsx ./node_modules/@cucumber/cucumber/bin/cucumber-js",
+    "test:login": "tsx ./node_modules/@cucumber/cucumber/bin/cucumber-js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@cucumber/cucumber": "^13.3.0",
     "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   }

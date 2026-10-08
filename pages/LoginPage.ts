@@ -1,34 +1,53 @@
-import { Page, Locator } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 
+/**
+ * Page Object de login.html.
+ * Encapsula los selectores y las acciones de la página de login.
+ */
 export class LoginPage {
-  readonly page: Page;
+  static readonly URL_PATTERN = /login\.html$/;
+
   readonly emailInput: Locator;
   readonly passwordInput: Locator;
-  readonly loginButton: Locator;
+  readonly ingresarButton: Locator;
+  readonly errorMessage: Locator;
+  readonly warningMessage: Locator;
 
-  constructor(page: Page) {
-    this.page = page;
-
+  constructor(readonly page: Page) {
     this.emailInput = page.locator('#email');
     this.passwordInput = page.locator('#password');
-    this.loginButton = page.locator('button[onclick="login()"]');
+
+    this.ingresarButton = page.getByRole('button', {
+      name: 'Ingresar'
+    });
+
+    this.errorMessage = page.locator('#error-message');
+    this.warningMessage = page.locator('#warning-message');
   }
 
-  async navegar() {
+  async abrir(): Promise<void> {
     await this.page.goto(
       'http://www.cs.uns.edu.ar/~mll/temp/testing/hogwarts/login.html'
     );
   }
 
-  async ingresarCorreo(correo: string) {
+  async completarCredenciales(
+    correo: string,
+    contrasena: string
+  ): Promise<void> {
     await this.emailInput.fill(correo);
-  }
-
-  async ingresarContrasena(contrasena: string) {
     await this.passwordInput.fill(contrasena);
   }
 
-  async hacerLogin() {
-    await this.loginButton.click();
+  async presionarIngresar(): Promise<void> {
+    await this.ingresarButton.click();
+  }
+
+  async iniciarSesion(
+    correo: string,
+    contrasena: string
+  ): Promise<void> {
+    await this.completarCredenciales(correo, contrasena);
+    await this.presionarIngresar();
   }
 }
