@@ -1,0 +1,27 @@
+{
+  "name": "Proyecto4-Login-Hogwarts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "test": "tsx ./node_modules/@cucumber/cucumber/bin/cucumber-js",
+  "test:login": "tsx ./node_modules/@cucumber/cucumber/bin/cucumber-js"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.4.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.3.0",
+    "@playwright/test": "^1.63.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
